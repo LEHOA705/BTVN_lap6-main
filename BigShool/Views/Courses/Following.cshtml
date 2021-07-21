@@ -1,0 +1,71 @@
+﻿@model IEnumerable<BigShool.Models.Course>
+
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Following List</h2>
+<table class="table">
+    <tr>
+        <th>
+            Lecturer ID
+        </th>
+        <th>
+            Lecturer Name
+        </th>
+        <th>
+            Place
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Category ID
+        </th>
+        <th>
+            Category Name
+        </th>
+        <th>Going.?</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LecturerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            @if (item.IsLogin == true)
+            {
+                if (item.IsGoing == true)
+                {
+                    <td><button data-course-id="@item.Id" type="button" class="btn btn-info js-tongle-attend">On Going</button></td>
+                }
+                else
+                {
+                    <td><button data-course-id="@item.Id" type="button" class="btn btn-primary js-tongle-attend">Going</button></td>
+                }
+            }
+            else
+            {
+                <td><button type="button" class="btn btn-secondary">No Action</button></td>
+            }
+        </tr>
+    }
+
+</table>

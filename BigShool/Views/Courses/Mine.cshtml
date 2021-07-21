@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BigShool.Models.Course>
+
+@{
+    ViewBag.Title = "Mine";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Mine</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Lecture Name
+        </th>
+        <th>
+            Course Date
+        </th>
+        <th>
+            Category Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DateTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CategoryName)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Modify", new { id = item.Id }) |
+        @Html.ActionLink("Xoá", "Remove", new { id = item.Id })
+    </td>
+</tr>
+    }
+
+</table>
